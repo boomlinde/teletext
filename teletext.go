@@ -33,8 +33,13 @@ func (h Header) SetPage(page int) {
 	h.Page = page
 }
 
-func (p Page) Len() int           { return len(p) }
-func (p Page) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+// Satisfies sorting interface
+func (p Page) Len() int { return len(p) }
+
+// Satisfies sorting interface
+func (p Page) Swap(i, j int) { p[i], p[j] = p[j], p[i] }
+
+// Satisfies sorting interface
 func (p Page) Less(i, j int) bool { return p[i].GetHeader().Row < p[j].GetHeader().Row }
 
 func (h Header) Serialize() []byte {
@@ -45,6 +50,7 @@ func (h Header) Serialize() []byte {
 	})
 }
 
+// Serializes a teletext page
 func (p Page) Serialize() []byte {
 	data := []byte{}
 	sort.Sort(p)

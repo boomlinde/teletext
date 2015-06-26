@@ -15,7 +15,7 @@ func Parity(data []byte) []byte {
 	return data
 }
 
-// 8:4 hamming encoded the input bytes
+// 8:4 hamming encodes the input bytes
 func Ham(data []byte) []byte {
 	for i, d := range data {
 		d1 := d & 1
