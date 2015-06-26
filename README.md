@@ -14,7 +14,7 @@ generating them using `.tti` files.
 ```go
 func Ham(data []byte) []byte
 ```
-8:4 hamming encoded the input bytes
+8:4 hamming encodes the input bytes
 
 #### func  Parity
 
@@ -102,24 +102,28 @@ Converts .tti file data to the internal page format
 ```go
 func (p Page) Len() int
 ```
+Satisfies sorting interface
 
 #### func (Page) Less
 
 ```go
 func (p Page) Less(i, j int) bool
 ```
+Satisfies sorting interface
 
 #### func (Page) Serialize
 
 ```go
 func (p Page) Serialize() []byte
 ```
+Serializes a teletext page
 
 #### func (Page) Swap
 
 ```go
 func (p Page) Swap(i, j int)
 ```
+Satisfies sorting interface
 
 #### type PageHeader
 
