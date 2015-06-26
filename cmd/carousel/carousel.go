@@ -22,9 +22,7 @@ func main() {
 		out = append(out, teletext.ConvertTTI("teletext", data).Serialize()...)
 	}
 	if len(out) != 0 {
-		log.Println("Starting carousel")
-		for {
-			os.Stdout.Write(out)
-		}
+		log.Println("Writing carousel")
+		os.Stdout.Write(out)
 	}
 }

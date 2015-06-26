@@ -26,8 +26,9 @@ type OutputLine struct {
 }
 
 func (o OutputLine) Serialize() []byte {
-	for len(o.Data) < 40 {
-		o.Data = append(o.Data, byte(' '))
+	data := Parity(o.Data)
+	for len(data) < 40 {
+		data = append(data, Parity([]byte{byte(' ')})...)
 	}
-	return append(o.Header.Serialize(), Parity(o.Data)...)
+	return append(o.Header.Serialize(), data...)
 }
