@@ -1,8 +1,9 @@
 package teletext
 
+// Page header line type
 type PageHeader struct {
 	Header
-	Title string
+	Title string // Page title
 }
 
 func (p PageHeader) Serialize() []byte {
@@ -18,9 +19,10 @@ func (p PageHeader) Serialize() []byte {
 	return data
 }
 
+// Output line type
 type OutputLine struct {
 	Header
-	Data []byte
+	Data []byte // Line data
 }
 
 func (o OutputLine) Serialize() []byte {

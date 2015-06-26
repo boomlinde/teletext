@@ -1,14 +1,20 @@
+// A Go library for generating teletext data suitable for
+// [raspi-teletext](https://github.com/ali1234/raspi-teletext). Contains data
+// structures and routines suitable for building pages from the ground up or
+// generating them using `.tti` files.
 package teletext
 
 import (
 	"sort"
 )
 
+// Teletext line header.
 type Header struct {
-	Page int
-	Row  int
+	Page int // Page number
+	Row  int // Row number
 }
 
+// Interface for line types
 type Line interface {
 	Serialize() []byte
 	GetHeader() *Header
@@ -17,10 +23,12 @@ type Line interface {
 
 type Page []Line
 
+// Returns a pointer to the line header
 func (h Header) GetHeader() *Header {
 	return &h
 }
 
+// Sets the page number of a line
 func (h Header) SetPage(page int) {
 	h.Page = page
 }

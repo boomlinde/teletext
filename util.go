@@ -1,6 +1,6 @@
 package teletext
 
-// Generate parity bit for 7 bit data
+// Generates parity bit for 7 bit data
 func Parity(data []byte) []byte {
 	for i, b := range data {
 		hweight := 0
@@ -15,7 +15,7 @@ func Parity(data []byte) []byte {
 	return data
 }
 
-// 8:4 hamming encoding
+// 8:4 hamming encoded the input bytes
 func Ham(data []byte) []byte {
 	for i, d := range data {
 		d1 := d & 1
@@ -33,7 +33,7 @@ func Ham(data []byte) []byte {
 	return data
 }
 
-// Unescape .tti line data
+// Unescapes .tti line data
 func unescape(line []byte) []byte {
 	out := []byte{}
 	escaped := false

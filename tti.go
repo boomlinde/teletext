@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// Converts a TTI file to the internal page format
+// Converts .tti file data to the internal page format
 func ConvertTTI(title string, data []byte) Page {
 	out := Page{}
 	lines := bytes.Split(data, []byte{0xd, 0xa})
