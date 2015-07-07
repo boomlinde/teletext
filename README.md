@@ -86,6 +86,12 @@ Output line type
 
 Converts .tti file data to the internal page format
 
+### func  ConvertTTV
+
+    func ConvertTTV(title string, pagenumber int, data []byte) Page
+
+Converts 971 format .ttv file data to the internal page format
+
 ### func (Page) Len
 
     func (p Page) Len() int
