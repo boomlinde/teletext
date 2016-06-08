@@ -58,3 +58,15 @@ func unescape(line []byte) []byte {
 	}
 	return out
 }
+
+// Escapes raw teletext lines for TTI output
+func escape(line []byte) []byte {
+	out := make([]byte, len(line))
+	for i, c := range line {
+		if c < 0x20 {
+			c += 0x80
+		}
+		out[i] = c
+	}
+	return out
+}

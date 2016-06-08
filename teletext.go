@@ -5,6 +5,7 @@
 package teletext
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -19,6 +20,7 @@ type Line interface {
 	Serialize() []byte
 	GetHeader() *Header
 	SetPage(int)
+	GetBytes() []byte
 }
 
 type Page []Line
@@ -58,4 +60,22 @@ func (p Page) Serialize() []byte {
 		data = append(data, line.Serialize()...)
 	}
 	return data
+}
+
+func (p Page) BuildTTI(headers map[string]string) []byte {
+	out := make([]byte, 0)
+
+	// output custom headers first
+	for key, value := range headers {
+		line := []byte(fmt.Sprintf("%s,%s\x0d\x0a", key, value))
+		out = append(out, line...)
+	}
+
+	for _, line := range p[1:] {
+		out = append(out, []byte(fmt.Sprintf("OL,%d,", line.GetHeader().Row))...)
+		out = append(out, escape(line.GetBytes())...)
+		out = append(out, []byte("\x0d\x0a")...)
+	}
+
+	return out
 }

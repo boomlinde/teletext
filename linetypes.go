@@ -19,10 +19,18 @@ func (p PageHeader) Serialize() []byte {
 	return data
 }
 
+func (p PageHeader) GetBytes() []byte {
+	return []byte{}
+}
+
 // Output line type
 type OutputLine struct {
 	Header
 	Data []byte // Line data
+}
+
+func (h OutputLine) GetBytes() []byte {
+	return h.Data
 }
 
 func (o OutputLine) Serialize() []byte {
